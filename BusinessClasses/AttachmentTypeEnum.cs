@@ -9,6 +9,7 @@ namespace BusinessClasses
     public enum AttachmentType
     {
         //Akshay
+        //Cool Karan
         Video = 1,
         Audio = 2,
         Image = 3,
