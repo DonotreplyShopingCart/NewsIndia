@@ -154,3 +154,4 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+mkdir empty_dir echo '*' > empty_dir/.gitignore echo '!.gitignore' >> empty_dir/.gitignore git add empty_dir git commit -m 'adding empty directory' empty_dir
