@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using EntityProject;
 
 
-
-
 namespace BusinessClasses
 {
     /// <summary>
