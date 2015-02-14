@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<div class="col-lg-pull-10">
+    <div class="embed-responsive embed-responsive-4by3">
+        <video style="height: 50%;width: 40%;" class="embed-responsive-item" src="~/Content/Video/testVideo.mp4"></video>
+    </div>
+</div>*@
+<head>
+    <title>Video.js | HTML5 Video Player</title>
+<link href="~/Content/video-js.css" rel="stylesheet" />
+<script src="~/Scripts/video.js"></script>
+</head>
+<div class="col-lg-4 pull-left">
+    <video id="MY_VIDEO_1" class="video-js vjs-default-skin" controls
+           preload="auto" width="640" height="264" poster="MY_VIDEO_POSTER.jpg"
+           data-setup="{}">
+        <source src="~/Content/Video/testVideo.mp4" type='video/mp4'>
+        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+    </video>
+</div>
