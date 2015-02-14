@@ -1,0 +1,137 @@
+﻿@using System.Activities.Statements
+@using BusinessClasses
+@using EntityProject
+@{
+    var menuItems = SessionManager.GetMenuItemFromSession();
+    var sideBannerItems = SessionManager.GetSideBarMenuItemFromSession();
+}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link href="~/Content/ViewCss/Layout.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="~/Content/Images/OtherSiteImages/news.png" style="float: left" />
+                @Html.ActionLink("News India", "Index", "Home", null, new { @class = "navbar-brand", @style = "background-color:transparent;   " })
+            </div>
+            <div class="navbar-collapse collapse">
+                @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "navbar-form navbar-left", @role = "Search" }))
+                {
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                }
+                <ul class="nav navbar-nav">
+                    @foreach (var menu in menuItems)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" role="button" aria-expanded="false">@menu.CategoryName <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                @foreach (var subCategory in menu.SubCategory)
+                                {
+                                    <li><a href="~/SubCategory/Index?subCategoryId=@subCategory.SubCategoryId" onclick="LoadView(this)">@subCategory.SubCategoryName</a></li>
+                                    <li class="divider"></li>
+                                }
+
+                            </ul>
+                        </li>
+                    }
+                    @if (true)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" role="button" aria-expanded="false">Admin Menu<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+
+                                <li><a href="~/SubCategory/Index?subCategoryId" onclick=" LoadView(this) ">Category Master</a></li>
+                                <li class="divider"></li>
+                                <li><a href="~/SubCategory/Index?subCategoryId" onclick=" LoadView(this) ">Sub-Category Master</a></li>
+                                <li class="divider"></li>
+                                <li><a href="~/SubCategory/Index?subCategoryId" onclick=" LoadView(this) ">Sub-Category Data Master</a></li>
+                                <li class="divider"></li>
+                                <li><a href="~/SubCategory/Index?subCategoryId" onclick=" LoadView(this) ">User Master</a></li>
+
+                            </ul>
+                        </li>
+
+                    }
+
+
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Welcome, Karan Singh Negi</a></li>
+                    <li>
+                        <img src="~/Content/Images/logOut.png" class="ImgLogout"/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    @* Side Bar FRom HERE ref:http://www.bootply.com/100993 *@
+    <div class="container SideBarContainer">
+        <div class="row">
+            <div class="col-md-2 navbar-left SideBarDiv" id="leftCol">
+
+                <div class="well">
+                    <ul class="nav nav-stacked" id="sidebar">
+                        @foreach (var item in sideBannerItems)
+                        {
+                            <li>
+                                <img src="@Url.Content("~/Content/Images/OtherSiteImages/"+item.ImageName)" class="SideBannerImg" alt="Image" />
+                                <a href="@item.URL" class="SideBannerAnchor">@item.Name</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-10 BodyMain" id="divPartial">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    @* Till Here *@
+    @*<div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>*@
+    <div id="divLoading" class="Loading" style="background-color: #FFF !important; display: none">
+        <div class="InnerLoading">
+            <p>
+                <img src="~/Content/Images/Loading.gif" class="ImageLoading" />
+            </p>
+            <p id="pLoadingText" style="text-align: center">Loading..</p>
+            <div id="divExtraContentsLoading" style="display:none"></div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*Notif View JS *@
+    <script src="~/Scripts/notify.js"></script>
+    <script src="~/Scripts/ViewScript/_Layout.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
