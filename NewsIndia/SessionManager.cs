@@ -10,6 +10,55 @@ namespace NewsIndia
 {
     public class SessionManager
     {
+
+
+        /// <summary>
+        /// Used to Set The User Information in the Session
+        /// </summary>
+        /// <param name="usreInfo"></param>
+        /// <returns></returns>
+        public static bool SetSessionInfo(UserMaster usreInfo)
+        {
+            if (HttpContext.Current.Session["USER_INFORMATION"] == null)
+            {
+                HttpContext.Current.Session.Add("USER_INFORMATION", usreInfo);
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Used to Set The User Information in the Session
+        /// </summary>
+        /// <returns></returns>
+        public static bool RemoveSessionInfo()
+        {
+            HttpContext.Current.Session["USER_INFORMATION"] = null;
+           
+            return true;
+        }
+
+        /// <summary>
+        /// Used to Get The User Information from the Session
+        /// </summary>
+        /// <returns></returns>
+        public static UserMaster GetSessionInfo()
+        {
+            return HttpContext.Current.Session["USER_INFORMATION"] == null ? null : (UserMaster)HttpContext.Current.Session["USER_INFORMATION"];
+        }
+
+        /// <summary>
+        /// Used to get the logged in UserName
+        /// </summary>
+        /// <returns></returns>
+        public static string GetLoggedInUserName()
+        {
+            var userInfo = GetSessionInfo();
+            if (userInfo == null)
+                return "";
+            return userInfo.UserName;
+        }
+
+
         /// <summary>
         /// Used to load the Menu In the Session
         /// </summary>
@@ -24,7 +73,7 @@ namespace NewsIndia
             {
                 HttpContext.Current.Session["MENU_INFORMATION"] = UserLayout.GetUserMenuList();
                 HttpContext.Current.Session.Add("MENU_SIDEBANNER_INFORMATION", UserLayout.GetSideBannerList());
-            } 
+            }
         }
 
         /// <summary>

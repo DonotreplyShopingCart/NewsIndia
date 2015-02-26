@@ -21,6 +21,7 @@ namespace EntityProject
     
         public int ID { get; set; }
         public string CategoryName { get; set; }
+        public bool IsVisible { get; set; }
         public bool IsActive { get; set; }
     
         public virtual ICollection<SubCategoryMaster> SubCategoryMasters { get; set; }

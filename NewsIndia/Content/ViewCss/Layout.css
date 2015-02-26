@@ -3,6 +3,11 @@
     width: 100% !important;
 }
 
+.AnchorCssRemove {
+    text-decoration: none;
+    background-color: transparent;
+}
+
 .SideBarDiv {
     /*width: 20% !important;*/
     display: block;
@@ -16,27 +21,49 @@
     margin-left: 16% !important;
     margin-top: 0%;
 }
+
 .SideBannerAnchor {
     margin-left: 15%;
     background-color: transparent !important;
 }
+
 .SideBannerImg {
     width: 20%;
     float: left;
 }
 
-@media screen and (max-width: 990px) {
-   .SideBarDiv {
-       display: none;
-   }
-   .BodyMain {
-       /*margin-top: 28% !important;*/
-    margin-left: 0% !important;
-    margin-top: 0%;
+.NoData {
+    text-align: center;
 }
+
+.NoDataImg {
+    width: 18%;
+    margin-left: 41%;
+}
+
+@media screen and (max-width: 990px) {
+    .UserName {
+        float: left;
+    }
+
+    .ImgLogout {
+        width: 29px !important;
+        margin-top: 2% !important;
+    }
+
+
+    .SideBarDiv {
+        display: none;
+    }
+
+    .BodyMain {
+        /*margin-top: 28% !important;*/
+        margin-left: 0% !important;
+        margin-top: 0%;
+    }
 }
 
 .ImgLogout {
-   width: 60%;
-margin-top: 35%;
+    width: 60%;
+    margin-top: 35%;
 }

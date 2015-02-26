@@ -16,17 +16,16 @@ namespace EntityProject
     {
         public SubCategoryMaster()
         {
-            this.SubCategoryAttachmentMasters = new HashSet<SubCategoryAttachmentMaster>();
             this.SubCategoryDataMasters = new HashSet<SubCategoryDataMaster>();
         }
     
         public int ID { get; set; }
         public int CategoryID { get; set; }
         public string SubCategoryName { get; set; }
+        public bool IsVisible { get; set; }
         public bool IsActive { get; set; }
     
         public virtual CategoryMaster CategoryMaster { get; set; }
-        public virtual ICollection<SubCategoryAttachmentMaster> SubCategoryAttachmentMasters { get; set; }
         public virtual ICollection<SubCategoryDataMaster> SubCategoryDataMasters { get; set; }
     }
 }

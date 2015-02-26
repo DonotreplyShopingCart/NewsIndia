@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NewsIndiaTVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="NewsIndiaTVEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Attachments" EntityType="NewsIndiaTVModel.Attachment" />
+    <EntitySet Name="CategoryMasters" EntityType="NewsIndiaTVModel.CategoryMaster" />
+    <EntitySet Name="SideBannerMasters" EntityType="NewsIndiaTVModel.SideBannerMaster" />
+    <EntitySet Name="SubCategoryDataAttachments" EntityType="NewsIndiaTVModel.SubCategoryDataAttachment" />
+    <EntitySet Name="SubCategoryDataMasters" EntityType="NewsIndiaTVModel.SubCategoryDataMaster" />
+    <EntitySet Name="SubCategoryMasters" EntityType="NewsIndiaTVModel.SubCategoryMaster" />
+    <EntitySet Name="UserMasters" EntityType="NewsIndiaTVModel.UserMaster" />
+    <AssociationSet Name="FK_SubCategoryDataAttachment_Attachment" Association="NewsIndiaTVModel.FK_SubCategoryDataAttachment_Attachment">
+      <End Role="Attachment" EntitySet="Attachments" />
+      <End Role="SubCategoryDataAttachment" EntitySet="SubCategoryDataAttachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCategoryMaster_CategoryMaster" Association="NewsIndiaTVModel.FK_SubCategoryMaster_CategoryMaster">
+      <End Role="CategoryMaster" EntitySet="CategoryMasters" />
+      <End Role="SubCategoryMaster" EntitySet="SubCategoryMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCategoryDataAttachment_SubCategoryDataMaster" Association="NewsIndiaTVModel.FK_SubCategoryDataAttachment_SubCategoryDataMaster">
+      <End Role="SubCategoryDataMaster" EntitySet="SubCategoryDataMasters" />
+      <End Role="SubCategoryDataAttachment" EntitySet="SubCategoryDataAttachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCategoryDataMaster_SubCategoryMaster" Association="NewsIndiaTVModel.FK_SubCategoryDataMaster_SubCategoryMaster">
+      <End Role="SubCategoryMaster" EntitySet="SubCategoryMasters" />
+      <End Role="SubCategoryDataMaster" EntitySet="SubCategoryDataMasters" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Attachment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="SubCategoryDataAttachments" Relationship="NewsIndiaTVModel.FK_SubCategoryDataAttachment_Attachment" FromRole="Attachment" ToRole="SubCategoryDataAttachment" />
+  </EntityType>
+  <EntityType Name="CategoryMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IsVisible" Type="Boolean" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="SubCategoryMasters" Relationship="NewsIndiaTVModel.FK_SubCategoryMaster_CategoryMaster" FromRole="CategoryMaster" ToRole="SubCategoryMaster" />
+  </EntityType>
+  <EntityType Name="SideBannerMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImageName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="URL" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsVisible" Type="Boolean" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubCategoryDataAttachment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubCategoryDataID" Type="Int32" Nullable="false" />
+    <Property Name="FileName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="AttachmentID" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Attachment" Relationship="NewsIndiaTVModel.FK_SubCategoryDataAttachment_Attachment" FromRole="SubCategoryDataAttachment" ToRole="Attachment" />
+    <NavigationProperty Name="SubCategoryDataMaster" Relationship="NewsIndiaTVModel.FK_SubCategoryDataAttachment_SubCategoryDataMaster" FromRole="SubCategoryDataAttachment" ToRole="SubCategoryDataMaster" />
+  </EntityType>
+  <EntityType Name="SubCategoryDataMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SubmittedDate" Type="DateTime" Precision="3" />
+    <Property Name="SubCategoryId" Type="Int32" Nullable="false" />
+    <Property Name="IsVisible" Type="Boolean" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="SubCategoryDataAttachments" Relationship="NewsIndiaTVModel.FK_SubCategoryDataAttachment_SubCategoryDataMaster" FromRole="SubCategoryDataMaster" ToRole="SubCategoryDataAttachment" />
+    <NavigationProperty Name="SubCategoryMaster" Relationship="NewsIndiaTVModel.FK_SubCategoryDataMaster_SubCategoryMaster" FromRole="SubCategoryDataMaster" ToRole="SubCategoryMaster" />
+  </EntityType>
+  <EntityType Name="SubCategoryMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="SubCategoryName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IsVisible" Type="Boolean" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="CategoryMaster" Relationship="NewsIndiaTVModel.FK_SubCategoryMaster_CategoryMaster" FromRole="SubCategoryMaster" ToRole="CategoryMaster" />
+    <NavigationProperty Name="SubCategoryDataMasters" Relationship="NewsIndiaTVModel.FK_SubCategoryDataMaster_SubCategoryMaster" FromRole="SubCategoryMaster" ToRole="SubCategoryDataMaster" />
+  </EntityType>
+  <EntityType Name="UserMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_SubCategoryDataAttachment_Attachment">
+    <End Type="NewsIndiaTVModel.Attachment" Role="Attachment" Multiplicity="1" />
+    <End Type="NewsIndiaTVModel.SubCategoryDataAttachment" Role="SubCategoryDataAttachment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Attachment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SubCategoryDataAttachment">
+        <PropertyRef Name="AttachmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubCategoryMaster_CategoryMaster">
+    <End Type="NewsIndiaTVModel.CategoryMaster" Role="CategoryMaster" Multiplicity="1" />
+    <End Type="NewsIndiaTVModel.SubCategoryMaster" Role="SubCategoryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SubCategoryMaster">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubCategoryDataAttachment_SubCategoryDataMaster">
+    <End Type="NewsIndiaTVModel.SubCategoryDataMaster" Role="SubCategoryDataMaster" Multiplicity="1" />
+    <End Type="NewsIndiaTVModel.SubCategoryDataAttachment" Role="SubCategoryDataAttachment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategoryDataMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SubCategoryDataAttachment">
+        <PropertyRef Name="SubCategoryDataID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubCategoryDataMaster_SubCategoryMaster">
+    <End Type="NewsIndiaTVModel.SubCategoryMaster" Role="SubCategoryMaster" Multiplicity="1" />
+    <End Type="NewsIndiaTVModel.SubCategoryDataMaster" Role="SubCategoryDataMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategoryMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SubCategoryDataMaster">
+        <PropertyRef Name="SubCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

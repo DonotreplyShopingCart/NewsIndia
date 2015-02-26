@@ -14,14 +14,14 @@ namespace NewsIndiaDAL
         /// Used to get List of the subCategory
         /// </summary>
         /// <returns></returns>
-        public static List<SubCategoryListModel> GetSubCategoryListView(int subCategory = 0)
+        public static List<SubCategoryModel> GetSubCategoryListView(int subCategory = 0)
         {
             try
             {
                 using (var nie = new NewsIndiaTVEntities())
                 {
-                    return nie.SubCategoryDataMasters.Where(m => m.SubCategoryId == subCategory).Select(
-                        m => new SubCategoryListModel()
+                    return nie.SubCategoryDataMasters.Where(m => m.SubCategoryId == subCategory && m.IsVisible).Select(
+                        m => new SubCategoryModel()
                         {
                             Title = m.Title,
                             Description = m.Description,
@@ -39,7 +39,7 @@ namespace NewsIndiaDAL
             }
             catch (Exception ex)
             {
-                return new List<SubCategoryListModel>();
+                return new List<SubCategoryModel>();
             }
         }
 

@@ -16,7 +16,6 @@ namespace EntityProject
     {
         public Attachment()
         {
-            this.SubCategoryAttachmentMasters = new HashSet<SubCategoryAttachmentMaster>();
             this.SubCategoryDataAttachments = new HashSet<SubCategoryDataAttachment>();
         }
     
@@ -24,7 +23,6 @@ namespace EntityProject
         public string Name { get; set; }
         public bool IsActive { get; set; }
     
-        public virtual ICollection<SubCategoryAttachmentMaster> SubCategoryAttachmentMasters { get; set; }
         public virtual ICollection<SubCategoryDataAttachment> SubCategoryDataAttachments { get; set; }
     }
 }

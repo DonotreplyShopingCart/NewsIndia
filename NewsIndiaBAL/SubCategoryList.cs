@@ -15,7 +15,7 @@ namespace NewsIndiaBAL
         /// Used to get List of the subCategory
         /// </summary>
         /// <returns></returns>
-        public static List<SubCategoryListModel> GetSubCategoryListView(int subCategory = 0)
+        public static List<SubCategoryModel> GetSubCategoryListView(int subCategory = 0)
         {
             try
             {
@@ -25,7 +25,7 @@ namespace NewsIndiaBAL
             }
             catch (Exception ex)
             {
-                return new List<SubCategoryListModel>();
+                return new List<SubCategoryModel>();
             }
         }
 

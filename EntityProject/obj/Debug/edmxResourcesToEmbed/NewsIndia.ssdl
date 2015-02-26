@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NewsIndiaTVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Attachment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategoryMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="IsVisible" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SideBannerMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImageName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="URL" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="IsVisible" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubCategoryDataAttachments">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubCategoryDataID" Type="int" Nullable="false" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="AttachmentID" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubCategoryDataMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="SubmittedDate" Type="datetime" />
+    <Property Name="SubCategoryId" Type="int" Nullable="false" />
+    <Property Name="IsVisible" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubCategoryMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="SubCategoryName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="IsVisible" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_SubCategoryDataAttachment_Attachment">
+    <End Role="Attachment" Type="Self.Attachment" Multiplicity="1" />
+    <End Role="SubCategoryDataAttachments" Type="Self.SubCategoryDataAttachments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Attachment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SubCategoryDataAttachments">
+        <PropertyRef Name="AttachmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubCategoryDataAttachment_SubCategoryDataMaster">
+    <End Role="SubCategoryDataMaster" Type="Self.SubCategoryDataMaster" Multiplicity="1" />
+    <End Role="SubCategoryDataAttachments" Type="Self.SubCategoryDataAttachments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategoryDataMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SubCategoryDataAttachments">
+        <PropertyRef Name="SubCategoryDataID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubCategoryDataMaster_SubCategoryMaster">
+    <End Role="SubCategoryMaster" Type="Self.SubCategoryMaster" Multiplicity="1" />
+    <End Role="SubCategoryDataMaster" Type="Self.SubCategoryDataMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategoryMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SubCategoryDataMaster">
+        <PropertyRef Name="SubCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubCategoryMaster_CategoryMaster">
+    <End Role="CategoryMaster" Type="Self.CategoryMaster" Multiplicity="1" />
+    <End Role="SubCategoryMaster" Type="Self.SubCategoryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SubCategoryMaster">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NewsIndiaTVModelStoreContainer">
+    <EntitySet Name="Attachment" EntityType="Self.Attachment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CategoryMaster" EntityType="Self.CategoryMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SideBannerMaster" EntityType="Self.SideBannerMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubCategoryDataAttachments" EntityType="Self.SubCategoryDataAttachments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubCategoryDataMaster" EntityType="Self.SubCategoryDataMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubCategoryMaster" EntityType="Self.SubCategoryMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_SubCategoryDataAttachment_Attachment" Association="Self.FK_SubCategoryDataAttachment_Attachment">
+      <End Role="Attachment" EntitySet="Attachment" />
+      <End Role="SubCategoryDataAttachments" EntitySet="SubCategoryDataAttachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCategoryDataAttachment_SubCategoryDataMaster" Association="Self.FK_SubCategoryDataAttachment_SubCategoryDataMaster">
+      <End Role="SubCategoryDataMaster" EntitySet="SubCategoryDataMaster" />
+      <End Role="SubCategoryDataAttachments" EntitySet="SubCategoryDataAttachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCategoryDataMaster_SubCategoryMaster" Association="Self.FK_SubCategoryDataMaster_SubCategoryMaster">
+      <End Role="SubCategoryMaster" EntitySet="SubCategoryMaster" />
+      <End Role="SubCategoryDataMaster" EntitySet="SubCategoryDataMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCategoryMaster_CategoryMaster" Association="Self.FK_SubCategoryMaster_CategoryMaster">
+      <End Role="CategoryMaster" EntitySet="CategoryMaster" />
+      <End Role="SubCategoryMaster" EntitySet="SubCategoryMaster" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

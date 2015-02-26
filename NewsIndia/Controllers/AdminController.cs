@@ -9,16 +9,21 @@ namespace NewsIndia.Controllers
 {
 
     /// <summary>
-    /// Implemented for the various funtionliaty of Admin
+    /// Implemented for the various funtionality of Admin
     /// </summary>
     /// 
     [UserAuth]
+    [AdminAuth]
     public class AdminController : Controller
     {
-
-        public ActionResult Index()
+        /// <summary>
+        /// Used to Manager the Category
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ShowCategory()
         {
-            return View();
+           // return View();
+            return null;
         }
     }
 }

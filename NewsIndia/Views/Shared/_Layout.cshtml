@@ -2,9 +2,19 @@
 @using BusinessClasses
 @using EntityProject
 @{
-    var menuItems = SessionManager.GetMenuItemFromSession();
+
     var sideBannerItems = SessionManager.GetSideBarMenuItemFromSession();
 }
+@*<style>
+        .bx-wrapper .bx-viewport {
+            -moz-box-shadow: 0 0 5px #ccc;
+            -webkit-box-shadow: 0 0 5px #ccc;
+            box-shadow: 0 0 5px #ccc;
+            border: solid #000000 8px;
+            background: #fff;
+        }
+    </style>*@
+
 
 
 <!DOCTYPE html>
@@ -18,9 +28,14 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/ViewScript/_Layout.js"></script>
 
 </head>
+
 <body>
+
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -32,57 +47,8 @@
                 <img src="~/Content/Images/OtherSiteImages/news.png" style="float: left" />
                 @Html.ActionLink("News India", "Index", "Home", null, new { @class = "navbar-brand", @style = "background-color:transparent;   " })
             </div>
-            <div class="navbar-collapse collapse">
-                @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "navbar-form navbar-left", @role = "Search" }))
-                {
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                }
-                <ul class="nav navbar-nav">
-                    @foreach (var menu in menuItems)
-                    {
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" role="button" aria-expanded="false">@menu.CategoryName <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                @foreach (var subCategory in menu.SubCategory)
-                                {
-                                    <li><a href="~/SubCategory/Index?subCategoryId=@subCategory.SubCategoryId" onclick="LoadView(this)">@subCategory.SubCategoryName</a></li>
-                                    <li class="divider"></li>
-                                }
-
-                            </ul>
-                        </li>
-                    }
-                    @if (true)
-                    {
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" role="button" aria-expanded="false">Admin Menu<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-
-                                <li><a href="~/SubCategory/Index?subCategoryId" onclick=" LoadView(this) ">Category Master</a></li>
-                                <li class="divider"></li>
-                                <li><a href="~/SubCategory/Index?subCategoryId" onclick=" LoadView(this) ">Sub-Category Master</a></li>
-                                <li class="divider"></li>
-                                <li><a href="~/SubCategory/Index?subCategoryId" onclick=" LoadView(this) ">Sub-Category Data Master</a></li>
-                                <li class="divider"></li>
-                                <li><a href="~/SubCategory/Index?subCategoryId" onclick=" LoadView(this) ">User Master</a></li>
-
-                            </ul>
-                        </li>
-
-                    }
-
-
-
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Welcome, Karan Singh Negi</a></li>
-                    <li>
-                        <img src="~/Content/Images/logOut.png" class="ImgLogout"/>
-                    </li>
-                </ul>
+            <div class="navbar-collapse collapse" id="divMenuDashboard">
+                @{Html.RenderAction("LoadLayoutMenu", "Layout");}
             </div>
         </div>
     </div>
@@ -127,11 +93,10 @@
         </div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+
     @*Notif View JS *@
     <script src="~/Scripts/notify.js"></script>
-    <script src="~/Scripts/ViewScript/_Layout.js"></script>
+   
     @RenderSection("scripts", required: false)
 </body>
 </html>

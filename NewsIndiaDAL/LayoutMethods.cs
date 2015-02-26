@@ -20,12 +20,12 @@ namespace NewsIndiaDAL
             {
                 using (var nie = new NewsIndiaTVEntities())
                 {
-                    return nie.CategoryMasters.Where(m => m.IsActive).Select(menu => new Category()
+                    return nie.CategoryMasters.Where(m => m.IsActive && m.IsVisible).Select(menu => new Category()
                      {
                          CategoryName = menu.CategoryName,
                          CategoryId = menu.ID,
                          SubCategory =
-                             menu.SubCategoryMasters.Where(m => m.CategoryID == menu.ID).Select(n => new SubCategory()
+                             menu.SubCategoryMasters.Where(m => m.CategoryID == menu.ID && m.IsActive && m.IsVisible).Select(n => new SubCategory()
                              {
                                  SubCategoryId = n.ID,
                                  SubCategoryName = n.SubCategoryName
@@ -49,7 +49,7 @@ namespace NewsIndiaDAL
             {
                 using (var nie = new NewsIndiaTVEntities())
                 {
-                    return nie.SideBannerMasters.Where(m => m.IsActive).ToList();
+                    return nie.SideBannerMasters.Where(m => m.IsActive && m.IsVisible).ToList();
                 }
             }
             catch (Exception ex)

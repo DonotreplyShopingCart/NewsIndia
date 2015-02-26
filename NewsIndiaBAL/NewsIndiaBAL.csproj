@@ -43,7 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs" />
+    <Compile Include="CategoryManager.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="SubCategoryData.cs" />
     <Compile Include="SubCategoryList.cs" />
+    <Compile Include="SubCategoryManager.cs" />
     <Compile Include="UserLayout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -51,6 +58,10 @@
     <ProjectReference Include="..\BusinessClasses\BusinessClasses.csproj">
       <Project>{d1e050c9-ee43-4cd1-b99d-06711531859f}</Project>
       <Name>BusinessClasses</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{ec6f0f51-a618-4005-8c13-8bec00b7df22}</Project>
+      <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\EntityProject\EntityProject.csproj">
       <Project>{06FE50E7-619A-46E9-8DAD-2F6AF90FF148}</Project>
@@ -60,6 +71,31 @@
       <Project>{c4b4db46-30bd-49a4-8b8f-a059bd2c6454}</Project>
       <Name>NewsIndiaDAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\BusinessClasses.dll" />
+    <Content Include="bin\Debug\BusinessClasses.pdb" />
+    <Content Include="bin\Debug\Common.dll" />
+    <Content Include="bin\Debug\Common.pdb" />
+    <Content Include="bin\Debug\EntityFramework.dll" />
+    <Content Include="bin\Debug\EntityFramework.xml" />
+    <Content Include="bin\Debug\EntityProject.dll" />
+    <Content Include="bin\Debug\EntityProject.pdb" />
+    <Content Include="bin\Debug\NewsIndiaBAL.dll" />
+    <Content Include="bin\Debug\NewsIndiaBAL.pdb" />
+    <Content Include="bin\Debug\NewsIndiaDAL.dll" />
+    <Content Include="bin\Debug\NewsIndiaDAL.pdb" />
+    <Content Include="obj\Debug\NewsIndiaBAL.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\NewsIndiaBAL.dll" />
+    <Content Include="obj\Debug\NewsIndiaBAL.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\NewsIndiaBAL.csprojResolveAssemblyReference.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

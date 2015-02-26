@@ -67,11 +67,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NewsIndia.edmx</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SideBannerMaster.cs">
-      <DependentUpon>NewsIndia.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubCategoryAttachmentMaster.cs">
       <DependentUpon>NewsIndia.tt</DependentUpon>
     </Compile>
     <Compile Include="SubCategoryDataAttachment.cs">
@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="bin\Debug\EntityProject.dll.config" />
     <None Include="NewsIndia.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NewsIndia.edmx</DependentUpon>
@@ -108,10 +109,28 @@
       <DependentUpon>NewsIndia.edmx</DependentUpon>
       <LastGenOutput>NewsIndia.cs</LastGenOutput>
     </None>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\edmxResourcesToEmbed\NewsIndia.csdl" />
+    <None Include="obj\Debug\edmxResourcesToEmbed\NewsIndia.msl" />
+    <None Include="obj\Debug\edmxResourcesToEmbed\NewsIndia.ssdl" />
+    <None Include="obj\Debug\EntityProject.csprojResolveAssemblyReference.cache" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\EntityFramework.dll" />
+    <Content Include="bin\Debug\EntityFramework.xml" />
+    <Content Include="obj\Debug\EntityProject.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\EntityProject.dll" />
+    <Content Include="obj\Debug\EntityProject.pdb" />
+    <Content Include="obj\Debug\TempPE\NewsIndia.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\NewsIndia.cs.dll" />
+    <Content Include="obj\Debug\TempPE\NewsIndia.Designer.cs.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

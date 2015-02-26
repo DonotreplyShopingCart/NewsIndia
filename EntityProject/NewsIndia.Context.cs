@@ -28,7 +28,6 @@ namespace EntityProject
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<CategoryMaster> CategoryMasters { get; set; }
         public DbSet<SideBannerMaster> SideBannerMasters { get; set; }
-        public DbSet<SubCategoryAttachmentMaster> SubCategoryAttachmentMasters { get; set; }
         public DbSet<SubCategoryDataAttachment> SubCategoryDataAttachments { get; set; }
         public DbSet<SubCategoryDataMaster> SubCategoryDataMasters { get; set; }
         public DbSet<SubCategoryMaster> SubCategoryMasters { get; set; }

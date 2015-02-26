@@ -5,10 +5,13 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using BusinessClasses;
+using Common;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using NewsIndia.Models;
+using NewsIndiaBAL;
 
 namespace NewsIndia.Controllers
 {
@@ -25,6 +28,65 @@ namespace NewsIndia.Controllers
         {
             UserManager = userManager;
         }
+
+
+        /// <summary>
+        /// Used for the login view Admin
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
+        public ActionResult NewsIndiaAdminLogin()
+        {
+            var userInfo = CookieManager.GetUserInfoFromCookie(Request) ?? new Login();
+            return View(userInfo);
+        }
+
+
+        /// <summary>
+        /// used to get the Login Info
+        /// </summary>
+        /// <param name="loginInfo"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult NewsIndiaAdminLogin(Login loginInfo)
+        {
+            if (ModelState.IsValid)
+            {
+                var userInfo = Account.GetLoginInfo(new LoginInfo() { Password = loginInfo.Password, UserName = loginInfo.UserName });
+
+                if (userInfo != null)
+                {
+                    SessionManager.SetSessionInfo(userInfo);
+                    if (loginInfo.RememberMe)
+                        Response.Cookies.Add(CookieManager.SetUserInfoCookie(loginInfo));
+                    else
+                        CookieManager.ClearCookie(Request, Response.Cookies);
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid Username or Password.");
+                }
+
+            }
+            return View(loginInfo);
+        }
+
+
+        /// <summary>
+        /// Used to log out Admin
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
+        public ActionResult NewsIndiaAdminLogOut()
+        {
+            SessionManager.RemoveSessionInfo();
+            return RedirectToAction("Index", "Home");
+        }
+
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
 
@@ -379,7 +441,8 @@ namespace NewsIndia.Controllers
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
             {
             }
 

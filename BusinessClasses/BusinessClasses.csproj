@@ -39,16 +39,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActiveCategories.cs" />
     <Compile Include="AttachmentTypeEnum.cs" />
+    <Compile Include="LoginInfo.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="SubCategoryDataModel.cs" />
     <Compile Include="SubCategoryListModel.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubCategoryTableModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EntityProject\EntityProject.csproj">
       <Project>{06fe50e7-619a-46e9-8dad-2f6af90ff148}</Project>
       <Name>EntityProject</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\BusinessClasses.dll" />
+    <Content Include="bin\Debug\BusinessClasses.pdb" />
+    <Content Include="bin\Debug\EntityFramework.dll" />
+    <Content Include="bin\Debug\EntityFramework.xml" />
+    <Content Include="bin\Debug\EntityProject.dll" />
+    <Content Include="bin\Debug\EntityProject.pdb" />
+    <Content Include="obj\Debug\BusinessClasses.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\BusinessClasses.dll" />
+    <Content Include="obj\Debug\BusinessClasses.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Debug\BusinessClasses.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

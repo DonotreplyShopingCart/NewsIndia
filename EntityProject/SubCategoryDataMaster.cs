@@ -22,7 +22,9 @@ namespace EntityProject
         public int ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public Nullable<System.DateTime> SubmittedDate { get; set; }
         public int SubCategoryId { get; set; }
+        public bool IsVisible { get; set; }
         public bool IsActive { get; set; }
     
         public virtual ICollection<SubCategoryDataAttachment> SubCategoryDataAttachments { get; set; }

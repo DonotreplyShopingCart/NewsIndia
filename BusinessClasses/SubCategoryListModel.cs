@@ -1,5 +1,4 @@
-﻿///Testing the git function
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +10,7 @@ namespace BusinessClasses
     /// <summary>
     /// Used to Get the SubCategoryList
     /// </summary>
-    public class SubCategoryListModel
+    public class SubCategoryModel
     {
         public int SubCategoryDataId { set; get; }
         public string Title { set; get; }

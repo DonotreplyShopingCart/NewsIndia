@@ -18,6 +18,7 @@ namespace EntityProject
         public string ImageName { get; set; }
         public string Name { get; set; }
         public string URL { get; set; }
+        public bool IsVisible { get; set; }
         public bool IsActive { get; set; }
     }
 }
