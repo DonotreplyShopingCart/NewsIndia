@@ -15,6 +15,7 @@ namespace BusinessClasses
     /// </summary>
     public class Category
     {
+
         public string CategoryName { set; get; }
         public int CategoryId { set; get; }
         public List<SubCategory> SubCategory{set;get;}
