@@ -17,6 +17,7 @@ namespace NewsIndia.Controllers
         //Page Not Found Error
         public ViewResult NotFound()
         {
+
             Response.StatusCode = 404; 
             return View();
         }
