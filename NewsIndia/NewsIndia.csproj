@@ -167,6 +167,7 @@
     <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\SubCategoryController.cs" />
     <Compile Include="Controllers\SubCategoryDataController.cs" />
+    <Compile Include="Controllers\SubCategoryDataManagerController.cs" />
     <Compile Include="Controllers\SubCategoryManagerController.cs" />
     <Compile Include="CookieManager.cs" />
     <Compile Include="Global.asax.cs">
@@ -412,6 +413,7 @@
     <Folder Include="Content\Audio\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="Views\SubCategoryDataManager\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
