@@ -14,9 +14,28 @@ namespace EntityProject
     
     public partial class UserMaster
     {
-        public int ID { get; set; }
-        public string UserName { get; set; }
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
+        public string PhoneNumber { get; set; }
+        public Nullable<bool> Gender { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Country { get; set; }
+        public int RoleId { get; set; }
+        public Nullable<bool> HasUserAccess { get; set; }
+        public Nullable<bool> HasMenuAccess { get; set; }
+        public Nullable<bool> HasNewsAccess { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedOn { get; set; }
+        public Nullable<int> ModifiedBy { get; set; }
+        public Nullable<System.DateTime> ModifiedOn { get; set; }
         public bool IsActive { get; set; }
+        public string Pincode { get; set; }
+    
+        public virtual UserRole UserRole { get; set; }
     }
 }

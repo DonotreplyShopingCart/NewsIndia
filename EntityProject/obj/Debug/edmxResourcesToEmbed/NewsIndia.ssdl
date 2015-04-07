@@ -62,11 +62,36 @@
   </EntityType>
   <EntityType Name="UserMaster">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserName" Type="nvarchar" MaxLength="500" Nullable="false" />
-    <Property Name="Password" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="500" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Email" Type="nvarchar" MaxLength="500" />
+    <Property Name="Password" Type="nvarchar" MaxLength="500" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="10" />
+    <Property Name="Gender" Type="bit" />
+    <Property Name="City" Type="nvarchar" MaxLength="500" />
+    <Property Name="State" Type="nvarchar" MaxLength="500" />
+    <Property Name="Country" Type="nvarchar" MaxLength="500" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="HasUserAccess" Type="bit" />
+    <Property Name="HasMenuAccess" Type="bit" />
+    <Property Name="HasNewsAccess" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Pincode" Type="nvarchar" MaxLength="6" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_SubCategoryDataAttachment_Attachment">
@@ -117,6 +142,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_UserMaster_UserMaster">
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+    <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserMaster">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="NewsIndiaTVModelStoreContainer">
     <EntitySet Name="Attachment" EntityType="Self.Attachment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CategoryMaster" EntityType="Self.CategoryMaster" Schema="dbo" store:Type="Tables" />
@@ -125,6 +162,7 @@
     <EntitySet Name="SubCategoryDataMaster" EntityType="Self.SubCategoryDataMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SubCategoryMaster" EntityType="Self.SubCategoryMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_SubCategoryDataAttachment_Attachment" Association="Self.FK_SubCategoryDataAttachment_Attachment">
       <End Role="Attachment" EntitySet="Attachment" />
       <End Role="SubCategoryDataAttachments" EntitySet="SubCategoryDataAttachments" />
@@ -140,6 +178,10 @@
     <AssociationSet Name="FK_SubCategoryMaster_CategoryMaster" Association="Self.FK_SubCategoryMaster_CategoryMaster">
       <End Role="CategoryMaster" EntitySet="CategoryMaster" />
       <End Role="SubCategoryMaster" EntitySet="SubCategoryMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserMaster_UserMaster" Association="Self.FK_UserMaster_UserMaster">
+      <End Role="UserRole" EntitySet="UserRole" />
+      <End Role="UserMaster" EntitySet="UserMaster" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

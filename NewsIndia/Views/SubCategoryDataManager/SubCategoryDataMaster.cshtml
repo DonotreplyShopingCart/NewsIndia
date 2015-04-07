@@ -1,0 +1,69 @@
+﻿@using BusinessClasses
+@{
+    var activeCategories = (List<ActiveCategory>)ViewBag.ActiveCategoryInfo;
+    ViewBag.Title = "SubCategoryDataMaster";
+}
+
+
+<link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.js"></script>
+<link href="~/Content/ViewCss/SubCategoryDataMaster.css" rel="stylesheet" />
+
+@* Input Css and Js *@
+<link href="~/Content/InputCss/fileinput.min.css" rel="stylesheet" />
+<script src="~/Scripts/InputScript/fileinput.min.js"></script>
+
+<div class="CategoryMasterMainDiv">
+    <div class="page-header" style="margin: auto !important">
+        <h1 id="tables" style="text-align: center">Sub-Category Data Master</h1>
+
+
+        <input type="text" class="form-control" style="float:left;width: 41%" placeholder="Search SubCategory Data" id="txtSearchSubCategoryData">
+        <button type="submit" class="btn btn-default" style="margin-left:1% ">Search</button>
+        <button type="button" class="btn btn-default" style="float:right" data-toggle="modal" data-target="#popup" data-subcategoryid="0">Add Sub-Category Data</button>
+
+
+
+
+    </div>
+    <div id="divSubCategoryDataTable">
+        @{ Html.RenderAction("ShowSubCategoryDataTable");}
+    </div>
+
+    @* PopUpDivs *@
+
+    <div class="modal " id="popup">
+        <div class="modal-dialog center" id="modalMain">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title center">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" placeholder="Title" id="txtSubCategoryDataName" class="form-control" data-container="body" data-placement="right" data-content="Please Enter Title!!!">
+
+                    <select class="form-control PopUpDropDown" id="ddlCategory" data-content="Please Select Category!!!">
+                        <option value="0">Category Name</option>
+                        @foreach (var category in activeCategories)
+                        {
+                            <option value="@category.CategoryId">@category.CategoryName</option>
+                        }
+                    </select>
+                    <select class="form-control PopUpDropDown" id="ddlSubCategory" data-content="Please Select SubCategory!!!" >
+                        <option value="0">SubCategory Name</option>
+                    </select>
+                    <input type="checkbox" id="chkIsVisible" style="margin-top: 3%;margin-right: 1%;">Show SubCategory Data
+                    <hr />Select Files to be Shown
+                    <input id="inputFiles" type="file" class="file" multiple="true" data-show-upload="false" data-show-caption="true" onchange="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btnSaveChanges">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/ViewScript/SubCategoryDataMaster.js"></script>
+

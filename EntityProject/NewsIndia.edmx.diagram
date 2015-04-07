@@ -11,11 +11,13 @@
         <EntityTypeShape EntityType="NewsIndiaTVModel.SubCategoryDataAttachment" Width="1.5" PointX="7.5" PointY="1.125" />
         <EntityTypeShape EntityType="NewsIndiaTVModel.SubCategoryDataMaster" Width="1.5" PointX="5.25" PointY="1" />
         <EntityTypeShape EntityType="NewsIndiaTVModel.SubCategoryMaster" Width="1.5" PointX="3" PointY="1.125" />
-        <EntityTypeShape EntityType="NewsIndiaTVModel.UserMaster" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="NewsIndiaTVModel.UserMaster" Width="1.5" PointX="10" PointY="5.125" />
+        <EntityTypeShape EntityType="NewsIndiaTVModel.UserRole" Width="1.5" PointX="7.75" PointY="6.875" />
         <AssociationConnector Association="NewsIndiaTVModel.FK_SubCategoryDataAttachment_Attachment" />
         <AssociationConnector Association="NewsIndiaTVModel.FK_SubCategoryMaster_CategoryMaster" />
         <AssociationConnector Association="NewsIndiaTVModel.FK_SubCategoryDataAttachment_SubCategoryDataMaster" />
         <AssociationConnector Association="NewsIndiaTVModel.FK_SubCategoryDataMaster_SubCategoryMaster" />
+        <AssociationConnector Association="NewsIndiaTVModel.FK_UserMaster_UserMaster" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

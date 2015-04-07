@@ -8,6 +8,7 @@
     <EntitySet Name="SubCategoryDataMasters" EntityType="NewsIndiaTVModel.SubCategoryDataMaster" />
     <EntitySet Name="SubCategoryMasters" EntityType="NewsIndiaTVModel.SubCategoryMaster" />
     <EntitySet Name="UserMasters" EntityType="NewsIndiaTVModel.UserMaster" />
+    <EntitySet Name="UserRoles" EntityType="NewsIndiaTVModel.UserRole" />
     <AssociationSet Name="FK_SubCategoryDataAttachment_Attachment" Association="NewsIndiaTVModel.FK_SubCategoryDataAttachment_Attachment">
       <End Role="Attachment" EntitySet="Attachments" />
       <End Role="SubCategoryDataAttachment" EntitySet="SubCategoryDataAttachments" />
@@ -23,6 +24,10 @@
     <AssociationSet Name="FK_SubCategoryDataMaster_SubCategoryMaster" Association="NewsIndiaTVModel.FK_SubCategoryDataMaster_SubCategoryMaster">
       <End Role="SubCategoryMaster" EntitySet="SubCategoryMasters" />
       <End Role="SubCategoryDataMaster" EntitySet="SubCategoryDataMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserMaster_UserMaster" Association="NewsIndiaTVModel.FK_UserMaster_UserMaster">
+      <End Role="UserRole" EntitySet="UserRoles" />
+      <End Role="UserMaster" EntitySet="UserMasters" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Attachment">
@@ -95,12 +100,39 @@
   </EntityType>
   <EntityType Name="UserMaster">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Password" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Boolean" />
+    <Property Name="City" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="HasUserAccess" Type="Boolean" />
+    <Property Name="HasMenuAccess" Type="Boolean" />
+    <Property Name="HasNewsAccess" Type="Boolean" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Pincode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserRole" Relationship="NewsIndiaTVModel.FK_UserMaster_UserMaster" FromRole="UserMaster" ToRole="UserRole" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="UserMasters" Relationship="NewsIndiaTVModel.FK_UserMaster_UserMaster" FromRole="UserRole" ToRole="UserMaster" />
   </EntityType>
   <Association Name="FK_SubCategoryDataAttachment_Attachment">
     <End Type="NewsIndiaTVModel.Attachment" Role="Attachment" Multiplicity="1" />
@@ -147,6 +179,18 @@
       </Principal>
       <Dependent Role="SubCategoryDataMaster">
         <PropertyRef Name="SubCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserMaster_UserMaster">
+    <End Type="NewsIndiaTVModel.UserRole" Role="UserRole" Multiplicity="1" />
+    <End Type="NewsIndiaTVModel.UserMaster" Role="UserMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserMaster">
+        <PropertyRef Name="RoleId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

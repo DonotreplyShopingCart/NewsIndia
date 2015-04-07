@@ -23,7 +23,7 @@ namespace NewsIndiaDAL
                 
                     var userInfo=
                         nie.UserMasters.FirstOrDefault(
-                            m => m.UserName == loginInfo.UserName && m.Password == loginInfo.Password && m.IsActive);
+                            m => m.Email == loginInfo.UserName && m.Password == loginInfo.Password && m.IsActive);
                     
                     return userInfo;
                 }

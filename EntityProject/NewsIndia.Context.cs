@@ -32,5 +32,6 @@ namespace EntityProject
         public DbSet<SubCategoryDataMaster> SubCategoryDataMasters { get; set; }
         public DbSet<SubCategoryMaster> SubCategoryMasters { get; set; }
         public DbSet<UserMaster> UserMasters { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
     }
 }

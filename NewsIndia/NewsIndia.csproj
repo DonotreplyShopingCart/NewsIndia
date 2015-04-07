@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -107,9 +111,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
@@ -276,6 +277,8 @@
     <Content Include="Content\Images\OtherSiteImages\onebit_18.png" />
     <Content Include="Content\Images\UploadedImages\elec.jpg" />
     <Content Include="Content\Images\VideoImage.png" />
+    <Content Include="Content\InputCss\fileinput.css" />
+    <Content Include="Content\InputCss\fileinput.min.css" />
     <Content Include="Content\jquery.bxslider.css" />
     <Content Include="Content\ValidationEngine\customMessages.css" />
     <Content Include="Content\ValidationEngine\releasenotes.plugin.css" />
@@ -291,6 +294,7 @@
     <Content Include="Content\Loading.css" />
     <Content Include="Content\notify.css" />
     <Content Include="Content\Video\testVideo.mp4" />
+    <Content Include="Content\ViewCss\SubCategoryDataMaster.css" />
     <Content Include="Content\ViewCss\SubCategoryMaster.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -308,6 +312,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap.js" />
+    <Content Include="Scripts\InputScript\fileinput.js" />
+    <Content Include="Scripts\InputScript\fileinput.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -367,6 +373,7 @@
     <Content Include="Scripts\video.js" />
     <Content Include="Scripts\ViewScript\CategoryMaster.js" />
     <Content Include="Scripts\ViewScript\Login.js" />
+    <Content Include="Scripts\ViewScript\SubCategoryDataMaster.js" />
     <Content Include="Scripts\ViewScript\SubCategoryMaster.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
@@ -407,13 +414,14 @@
     <Content Include="Views\SubCategoryData\Details.cshtml" />
     <Content Include="Views\SubCategoryManager\ShowSubCategoryTable.cshtml" />
     <Content Include="Views\SubCategoryManager\SubCategoryMaster.cshtml" />
+    <Content Include="Views\SubCategoryDataManager\ShowSubCategoryDataTable.cshtml" />
+    <Content Include="Views\SubCategoryDataManager\SubCategoryDataMaster.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Audio\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Admin\" />
-    <Folder Include="Views\SubCategoryDataManager\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

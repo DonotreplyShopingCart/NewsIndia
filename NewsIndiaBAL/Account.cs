@@ -25,7 +25,7 @@ namespace NewsIndiaBAL
                 loginInfo.Password = new EncryptionHelper().Encrypt(loginInfo.Password);
                 loginInfo.UserName = loginInfo.UserName.ToUpper();
                 var userInfo= NewsIndiaDAL.Account.GetLoginInfo(loginInfo);
-                userInfo.UserName = new CultureInfo("en-US", false).TextInfo.ToTitleCase(userInfo.UserName);
+                userInfo.FirstName = new CultureInfo("en-US", false).TextInfo.ToTitleCase(userInfo.FirstName);
                 return userInfo;
 
             }

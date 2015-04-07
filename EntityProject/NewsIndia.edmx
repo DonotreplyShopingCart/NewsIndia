@@ -67,11 +67,36 @@
         </EntityType>
         <EntityType Name="UserMaster">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" />
+          <Property Name="Password" Type="nvarchar" MaxLength="500" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="City" Type="nvarchar" MaxLength="500" />
+          <Property Name="State" Type="nvarchar" MaxLength="500" />
+          <Property Name="Country" Type="nvarchar" MaxLength="500" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="HasUserAccess" Type="bit" />
+          <Property Name="HasMenuAccess" Type="bit" />
+          <Property Name="HasNewsAccess" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Pincode" Type="nvarchar" MaxLength="6" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_SubCategoryDataAttachment_Attachment">
@@ -122,6 +147,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserMaster_UserMaster">
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMaster">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="NewsIndiaTVModelStoreContainer">
           <EntitySet Name="Attachment" EntityType="Self.Attachment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CategoryMaster" EntityType="Self.CategoryMaster" Schema="dbo" store:Type="Tables" />
@@ -130,6 +167,7 @@
           <EntitySet Name="SubCategoryDataMaster" EntityType="Self.SubCategoryDataMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategoryMaster" EntityType="Self.SubCategoryMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_SubCategoryDataAttachment_Attachment" Association="Self.FK_SubCategoryDataAttachment_Attachment">
             <End Role="Attachment" EntitySet="Attachment" />
             <End Role="SubCategoryDataAttachments" EntitySet="SubCategoryDataAttachments" />
@@ -146,6 +184,10 @@
             <End Role="CategoryMaster" EntitySet="CategoryMaster" />
             <End Role="SubCategoryMaster" EntitySet="SubCategoryMaster" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserMaster_UserMaster" Association="Self.FK_UserMaster_UserMaster">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="UserMaster" EntitySet="UserMaster" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -159,6 +201,7 @@
           <EntitySet Name="SubCategoryDataMasters" EntityType="NewsIndiaTVModel.SubCategoryDataMaster" />
           <EntitySet Name="SubCategoryMasters" EntityType="NewsIndiaTVModel.SubCategoryMaster" />
           <EntitySet Name="UserMasters" EntityType="NewsIndiaTVModel.UserMaster" />
+          <EntitySet Name="UserRoles" EntityType="NewsIndiaTVModel.UserRole" />
           <AssociationSet Name="FK_SubCategoryDataAttachment_Attachment" Association="NewsIndiaTVModel.FK_SubCategoryDataAttachment_Attachment">
             <End Role="Attachment" EntitySet="Attachments" />
             <End Role="SubCategoryDataAttachment" EntitySet="SubCategoryDataAttachments" />
@@ -174,6 +217,10 @@
           <AssociationSet Name="FK_SubCategoryDataMaster_SubCategoryMaster" Association="NewsIndiaTVModel.FK_SubCategoryDataMaster_SubCategoryMaster">
             <End Role="SubCategoryMaster" EntitySet="SubCategoryMasters" />
             <End Role="SubCategoryDataMaster" EntitySet="SubCategoryDataMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMaster_UserMaster" Association="NewsIndiaTVModel.FK_UserMaster_UserMaster">
+            <End Role="UserRole" EntitySet="UserRoles" />
+            <End Role="UserMaster" EntitySet="UserMasters" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Attachment">
@@ -246,12 +293,39 @@
         </EntityType>
         <EntityType Name="UserMaster">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="City" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="HasUserAccess" Type="Boolean" />
+          <Property Name="HasMenuAccess" Type="Boolean" />
+          <Property Name="HasNewsAccess" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Pincode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserRole" Relationship="NewsIndiaTVModel.FK_UserMaster_UserMaster" FromRole="UserMaster" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserMasters" Relationship="NewsIndiaTVModel.FK_UserMaster_UserMaster" FromRole="UserRole" ToRole="UserMaster" />
         </EntityType>
         <Association Name="FK_SubCategoryDataAttachment_Attachment">
           <End Type="NewsIndiaTVModel.Attachment" Role="Attachment" Multiplicity="1" />
@@ -298,6 +372,18 @@
             </Principal>
             <Dependent Role="SubCategoryDataMaster">
               <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMaster_UserMaster">
+          <End Type="NewsIndiaTVModel.UserRole" Role="UserRole" Multiplicity="1" />
+          <End Type="NewsIndiaTVModel.UserMaster" Role="UserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMaster">
+              <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -376,10 +462,36 @@
           <EntitySetMapping Name="UserMasters">
             <EntityTypeMapping TypeName="NewsIndiaTVModel.UserMaster">
               <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="HasNewsAccess" ColumnName="HasNewsAccess" />
+                <ScalarProperty Name="HasMenuAccess" ColumnName="HasMenuAccess" />
+                <ScalarProperty Name="HasUserAccess" ColumnName="HasUserAccess" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="NewsIndiaTVModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -55,7 +55,7 @@ namespace NewsIndia
             var userInfo = GetSessionInfo();
             if (userInfo == null)
                 return "";
-            return userInfo.UserName;
+            return userInfo.FirstName;
         }
 
 
