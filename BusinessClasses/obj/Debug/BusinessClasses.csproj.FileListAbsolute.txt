@@ -33,3 +33,11 @@ H:\My Projects\NewsIndia\NewsIndiaGIT\BusinessClasses\bin\Debug\EntityProject.pd
 H:\My Projects\NewsIndia\NewsIndiaGIT\BusinessClasses\obj\Debug\BusinessClasses.csprojResolveAssemblyReference.cache
 H:\My Projects\NewsIndia\NewsIndiaGIT\BusinessClasses\obj\Debug\BusinessClasses.dll
 H:\My Projects\NewsIndia\NewsIndiaGIT\BusinessClasses\obj\Debug\BusinessClasses.pdb
+D:\GitNewsIndia\BusinessClasses\bin\Debug\BusinessClasses.dll
+D:\GitNewsIndia\BusinessClasses\bin\Debug\BusinessClasses.pdb
+D:\GitNewsIndia\BusinessClasses\bin\Debug\EntityProject.dll
+D:\GitNewsIndia\BusinessClasses\bin\Debug\EntityFramework.dll
+D:\GitNewsIndia\BusinessClasses\bin\Debug\EntityProject.pdb
+D:\GitNewsIndia\BusinessClasses\obj\Debug\BusinessClasses.csprojResolveAssemblyReference.cache
+D:\GitNewsIndia\BusinessClasses\obj\Debug\BusinessClasses.dll
+D:\GitNewsIndia\BusinessClasses\obj\Debug\BusinessClasses.pdb
