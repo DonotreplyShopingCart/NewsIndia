@@ -86,7 +86,6 @@ namespace NewsIndiaDAL
                     if (subCategoryDataInfo != null)
                         subCategoryDataInfo.IsActive = false;
                     nie.SaveChanges();
-
                 }
                 return true;
             }
@@ -95,7 +94,5 @@ namespace NewsIndiaDAL
                 return false;
             }
         }
-
-
     }
 }

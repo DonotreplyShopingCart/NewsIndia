@@ -42,3 +42,13 @@ H:\My Projects\NewsIndia\NewsIndiaGIT\NewsIndiaDAL\obj\Debug\NewsIndiaDAL.dll
 H:\My Projects\NewsIndia\NewsIndiaGIT\NewsIndiaDAL\obj\Debug\NewsIndiaDAL.pdb
 H:\My Projects\NewsIndia\NewsIndiaGIT\NewsIndiaDAL\bin\Debug\Antlr3.Runtime.dll
 H:\My Projects\NewsIndia\NewsIndiaGIT\NewsIndiaDAL\bin\Debug\Antlr3.Runtime.pdb
+D:\GitNewsIndia\NewsIndiaDAL\bin\Debug\NewsIndiaDAL.dll
+D:\GitNewsIndia\NewsIndiaDAL\bin\Debug\NewsIndiaDAL.pdb
+D:\GitNewsIndia\NewsIndiaDAL\bin\Debug\Antlr3.Runtime.dll
+D:\GitNewsIndia\NewsIndiaDAL\bin\Debug\BusinessClasses.dll
+D:\GitNewsIndia\NewsIndiaDAL\bin\Debug\EntityProject.dll
+D:\GitNewsIndia\NewsIndiaDAL\bin\Debug\BusinessClasses.pdb
+D:\GitNewsIndia\NewsIndiaDAL\bin\Debug\EntityProject.pdb
+D:\GitNewsIndia\NewsIndiaDAL\obj\Debug\NewsIndiaDAL.csprojResolveAssemblyReference.cache
+D:\GitNewsIndia\NewsIndiaDAL\obj\Debug\NewsIndiaDAL.dll
+D:\GitNewsIndia\NewsIndiaDAL\obj\Debug\NewsIndiaDAL.pdb

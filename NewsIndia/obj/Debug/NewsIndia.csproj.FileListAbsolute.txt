@@ -230,3 +230,19 @@ H:\My Projects\NewsIndia\NewsIndiaGIT\NewsIndia\bin\Microsoft.Owin.Security.Goog
 H:\My Projects\NewsIndia\NewsIndiaGIT\NewsIndia\bin\Microsoft.Owin.Security.Twitter.xml
 H:\My Projects\NewsIndia\NewsIndiaGIT\NewsIndia\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 H:\My Projects\NewsIndia\NewsIndiaGIT\NewsIndia\bin\NewsIndiaDAL.pdb
+D:\GitNewsIndia\NewsIndia\bin\NewsIndia.dll.config
+D:\GitNewsIndia\NewsIndia\bin\NewsIndia.dll
+D:\GitNewsIndia\NewsIndia\bin\NewsIndia.pdb
+D:\GitNewsIndia\NewsIndia\bin\BusinessClasses.dll
+D:\GitNewsIndia\NewsIndia\bin\Common.dll
+D:\GitNewsIndia\NewsIndia\bin\EntityProject.dll
+D:\GitNewsIndia\NewsIndia\bin\NewsIndiaBAL.dll
+D:\GitNewsIndia\NewsIndia\bin\NewsIndiaDAL.dll
+D:\GitNewsIndia\NewsIndia\bin\BusinessClasses.pdb
+D:\GitNewsIndia\NewsIndia\bin\Common.pdb
+D:\GitNewsIndia\NewsIndia\bin\EntityProject.pdb
+D:\GitNewsIndia\NewsIndia\bin\NewsIndiaBAL.pdb
+D:\GitNewsIndia\NewsIndia\bin\NewsIndiaDAL.pdb
+D:\GitNewsIndia\NewsIndia\obj\Debug\NewsIndia.csprojResolveAssemblyReference.cache
+D:\GitNewsIndia\NewsIndia\obj\Debug\NewsIndia.dll
+D:\GitNewsIndia\NewsIndia\obj\Debug\NewsIndia.pdb
