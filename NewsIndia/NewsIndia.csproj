@@ -170,6 +170,7 @@
     <Compile Include="Controllers\SubCategoryDataController.cs" />
     <Compile Include="Controllers\SubCategoryDataManagerController.cs" />
     <Compile Include="Controllers\SubCategoryManagerController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CookieManager.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -187,6 +188,16 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AttachmentUploads\ImageFile1.jpg" />
+    <Content Include="AttachmentUploads\ImageFile2.jpg" />
+    <Content Include="AttachmentUploads\ImageFile3.jpg" />
+    <Content Include="AttachmentUploads\ImageFile4.jpg" />
+    <Content Include="AttachmentUploads\ImageFile5.jpg" />
+    <Content Include="AttachmentUploads\ImageFile6.jpg" />
+    <Content Include="AttachmentUploads\ImageFile7.jpg" />
+    <Content Include="AttachmentUploads\ImageFile8.jpg" />
+    <Content Include="AttachmentUploads\ImageFile9.jpg" />
+    <Content Include="AttachmentUploads\VideoFile1.mp4" />
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Antlr3.Runtime.pdb" />
     <Content Include="bin\BusinessClasses.dll" />
@@ -416,6 +427,7 @@
     <Content Include="Views\SubCategoryManager\SubCategoryMaster.cshtml" />
     <Content Include="Views\SubCategoryDataManager\ShowSubCategoryDataTable.cshtml" />
     <Content Include="Views\SubCategoryDataManager\SubCategoryDataMaster.cshtml" />
+    <Content Include="Views\User\AddUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,6 +20,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="NewsIndiaTVModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="SideBannerMasters">
       <EntityTypeMapping TypeName="NewsIndiaTVModel.SideBannerMaster">
         <MappingFragment StoreEntitySet="SideBannerMaster">
@@ -29,6 +42,20 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ImageName" ColumnName="ImageName" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="NewsIndiaTVModel.State">
+        <MappingFragment StoreEntitySet="State">
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -48,8 +75,11 @@
         <MappingFragment StoreEntitySet="SubCategoryDataMaster">
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
+          <ScalarProperty Name="IsSuperAdminApproved" ColumnName="IsSuperAdminApproved" />
           <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
           <ScalarProperty Name="SubmittedDate" ColumnName="SubmittedDate" />
+          <ScalarProperty Name="SavedTimeStamp" ColumnName="SavedTimeStamp" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="ID" ColumnName="ID" />

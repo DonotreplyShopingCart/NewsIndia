@@ -3,7 +3,9 @@
   <EntityContainer Name="NewsIndiaTVEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Attachments" EntityType="NewsIndiaTVModel.Attachment" />
     <EntitySet Name="CategoryMasters" EntityType="NewsIndiaTVModel.CategoryMaster" />
+    <EntitySet Name="Countries" EntityType="NewsIndiaTVModel.Country" />
     <EntitySet Name="SideBannerMasters" EntityType="NewsIndiaTVModel.SideBannerMaster" />
+    <EntitySet Name="States" EntityType="NewsIndiaTVModel.State" />
     <EntitySet Name="SubCategoryDataAttachments" EntityType="NewsIndiaTVModel.SubCategoryDataAttachment" />
     <EntitySet Name="SubCategoryDataMasters" EntityType="NewsIndiaTVModel.SubCategoryDataMaster" />
     <EntitySet Name="SubCategoryMasters" EntityType="NewsIndiaTVModel.SubCategoryMaster" />
@@ -16,6 +18,10 @@
     <AssociationSet Name="FK_SubCategoryMaster_CategoryMaster" Association="NewsIndiaTVModel.FK_SubCategoryMaster_CategoryMaster">
       <End Role="CategoryMaster" EntitySet="CategoryMasters" />
       <End Role="SubCategoryMaster" EntitySet="SubCategoryMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_State_Country" Association="NewsIndiaTVModel.FK_State_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="State" EntitySet="States" />
     </AssociationSet>
     <AssociationSet Name="FK_SubCategoryDataAttachment_SubCategoryDataMaster" Association="NewsIndiaTVModel.FK_SubCategoryDataAttachment_SubCategoryDataMaster">
       <End Role="SubCategoryDataMaster" EntitySet="SubCategoryDataMasters" />
@@ -49,6 +55,19 @@
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="SubCategoryMasters" Relationship="NewsIndiaTVModel.FK_SubCategoryMaster_CategoryMaster" FromRole="CategoryMaster" ToRole="SubCategoryMaster" />
   </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="States" Relationship="NewsIndiaTVModel.FK_State_Country" FromRole="Country" ToRole="State" />
+  </EntityType>
   <EntityType Name="SideBannerMaster">
     <Key>
       <PropertyRef Name="ID" />
@@ -59,6 +78,20 @@
     <Property Name="URL" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="IsVisible" Type="Boolean" Nullable="false" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CountryId" Type="Int32" />
+    <NavigationProperty Name="Country" Relationship="NewsIndiaTVModel.FK_State_Country" FromRole="State" ToRole="Country" />
   </EntityType>
   <EntityType Name="SubCategoryDataAttachment">
     <Key>
@@ -79,8 +112,11 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="SavedTimeStamp" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="SubmittedDate" Type="DateTime" Precision="3" />
     <Property Name="SubCategoryId" Type="Int32" Nullable="false" />
+    <Property Name="IsSuperAdminApproved" Type="Boolean" />
     <Property Name="IsVisible" Type="Boolean" Nullable="false" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="SubCategoryDataAttachments" Relationship="NewsIndiaTVModel.FK_SubCategoryDataAttachment_SubCategoryDataMaster" FromRole="SubCategoryDataMaster" ToRole="SubCategoryDataAttachment" />
@@ -155,6 +191,18 @@
       </Principal>
       <Dependent Role="SubCategoryMaster">
         <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_State_Country">
+    <End Type="NewsIndiaTVModel.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="NewsIndiaTVModel.State" Role="State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="State">
+        <PropertyRef Name="CountryId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

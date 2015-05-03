@@ -52,3 +52,5 @@ D:\GitNewsIndia\NewsIndiaDAL\bin\Debug\EntityProject.pdb
 D:\GitNewsIndia\NewsIndiaDAL\obj\Debug\NewsIndiaDAL.csprojResolveAssemblyReference.cache
 D:\GitNewsIndia\NewsIndiaDAL\obj\Debug\NewsIndiaDAL.dll
 D:\GitNewsIndia\NewsIndiaDAL\obj\Debug\NewsIndiaDAL.pdb
+D:\GitNewsIndia\NewsIndiaDAL\bin\Debug\Common.dll
+D:\GitNewsIndia\NewsIndiaDAL\bin\Debug\Common.pdb

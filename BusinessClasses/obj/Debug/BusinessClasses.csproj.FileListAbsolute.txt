@@ -41,3 +41,5 @@ D:\GitNewsIndia\BusinessClasses\bin\Debug\EntityProject.pdb
 D:\GitNewsIndia\BusinessClasses\obj\Debug\BusinessClasses.csprojResolveAssemblyReference.cache
 D:\GitNewsIndia\BusinessClasses\obj\Debug\BusinessClasses.dll
 D:\GitNewsIndia\BusinessClasses\obj\Debug\BusinessClasses.pdb
+D:\GitNewsIndia\BusinessClasses\bin\Debug\Common.dll
+D:\GitNewsIndia\BusinessClasses\bin\Debug\Common.pdb
