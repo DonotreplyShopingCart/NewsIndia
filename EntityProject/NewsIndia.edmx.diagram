@@ -7,7 +7,9 @@
       <Diagram DiagramId="dc6d59e825614092825ab9eb27c4025d" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="NewsIndiaTVModel.Attachment" Width="1.5" PointX="5.25" PointY="5.75" />
         <EntityTypeShape EntityType="NewsIndiaTVModel.CategoryMaster" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="NewsIndiaTVModel.Country" Width="1.5" PointX="0.75" PointY="9" />
         <EntityTypeShape EntityType="NewsIndiaTVModel.SideBannerMaster" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="NewsIndiaTVModel.State" Width="1.5" PointX="3" PointY="9" />
         <EntityTypeShape EntityType="NewsIndiaTVModel.SubCategoryDataAttachment" Width="1.5" PointX="7.5" PointY="1.5" />
         <EntityTypeShape EntityType="NewsIndiaTVModel.SubCategoryDataMaster" Width="1.5" PointX="5.25" PointY="1" />
         <EntityTypeShape EntityType="NewsIndiaTVModel.SubCategoryMaster" Width="1.5" PointX="3" PointY="1.5" />
@@ -15,6 +17,7 @@
         <EntityTypeShape EntityType="NewsIndiaTVModel.UserRole" Width="1.5" PointX="7.75" PointY="6.875" />
         <AssociationConnector Association="NewsIndiaTVModel.FK_SubCategoryDataAttachment_Attachment" />
         <AssociationConnector Association="NewsIndiaTVModel.FK_SubCategoryMaster_CategoryMaster" />
+        <AssociationConnector Association="NewsIndiaTVModel.FK_State_Country" />
         <AssociationConnector Association="NewsIndiaTVModel.FK_SubCategoryDataAttachment_SubCategoryDataMaster" />
         <AssociationConnector Association="NewsIndiaTVModel.FK_SubCategoryDataMaster_SubCategoryMaster" />
         <AssociationConnector Association="NewsIndiaTVModel.FK_UserMaster_UserMaster" />

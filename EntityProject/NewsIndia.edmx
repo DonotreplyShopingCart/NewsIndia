@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="NewsIndiaTVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NewsIndiaTVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Attachment">
           <Key>
             <PropertyRef Name="ID" />
@@ -22,6 +22,18 @@
           <Property Name="IsVisible" Type="bit" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="SideBannerMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -32,6 +44,19 @@
           <Property Name="URL" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="IsVisible" Type="bit" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+          <Property Name="CountryId" Type="int" />
         </EntityType>
         <EntityType Name="SubCategoryDataAttachments">
           <Key>
@@ -102,6 +127,18 @@
           <Property Name="Name" Type="nvarchar" MaxLength="500" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_State_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="State" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SubCategoryDataAttachment_Attachment">
           <End Role="Attachment" Type="Self.Attachment" Multiplicity="1" />
           <End Role="SubCategoryDataAttachments" Type="Self.SubCategoryDataAttachments" Multiplicity="*" />
@@ -165,12 +202,18 @@
         <EntityContainer Name="NewsIndiaTVModelStoreContainer">
           <EntitySet Name="Attachment" EntityType="Self.Attachment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CategoryMaster" EntityType="Self.CategoryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SideBannerMaster" EntityType="Self.SideBannerMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategoryDataAttachments" EntityType="Self.SubCategoryDataAttachments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategoryDataMaster" EntityType="Self.SubCategoryDataMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategoryMaster" EntityType="Self.SubCategoryMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="State" EntitySet="State" />
+          </AssociationSet>
           <AssociationSet Name="FK_SubCategoryDataAttachment_Attachment" Association="Self.FK_SubCategoryDataAttachment_Attachment">
             <End Role="Attachment" EntitySet="Attachment" />
             <End Role="SubCategoryDataAttachments" EntitySet="SubCategoryDataAttachments" />
@@ -199,7 +242,9 @@
         <EntityContainer Name="NewsIndiaTVEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Attachments" EntityType="NewsIndiaTVModel.Attachment" />
           <EntitySet Name="CategoryMasters" EntityType="NewsIndiaTVModel.CategoryMaster" />
+          <EntitySet Name="Countries" EntityType="NewsIndiaTVModel.Country" />
           <EntitySet Name="SideBannerMasters" EntityType="NewsIndiaTVModel.SideBannerMaster" />
+          <EntitySet Name="States" EntityType="NewsIndiaTVModel.State" />
           <EntitySet Name="SubCategoryDataAttachments" EntityType="NewsIndiaTVModel.SubCategoryDataAttachment" />
           <EntitySet Name="SubCategoryDataMasters" EntityType="NewsIndiaTVModel.SubCategoryDataMaster" />
           <EntitySet Name="SubCategoryMasters" EntityType="NewsIndiaTVModel.SubCategoryMaster" />
@@ -212,6 +257,10 @@
           <AssociationSet Name="FK_SubCategoryMaster_CategoryMaster" Association="NewsIndiaTVModel.FK_SubCategoryMaster_CategoryMaster">
             <End Role="CategoryMaster" EntitySet="CategoryMasters" />
             <End Role="SubCategoryMaster" EntitySet="SubCategoryMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="NewsIndiaTVModel.FK_State_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="State" EntitySet="States" />
           </AssociationSet>
           <AssociationSet Name="FK_SubCategoryDataAttachment_SubCategoryDataMaster" Association="NewsIndiaTVModel.FK_SubCategoryDataAttachment_SubCategoryDataMaster">
             <End Role="SubCategoryDataMaster" EntitySet="SubCategoryDataMasters" />
@@ -245,6 +294,19 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="SubCategoryMasters" Relationship="NewsIndiaTVModel.FK_SubCategoryMaster_CategoryMaster" FromRole="CategoryMaster" ToRole="SubCategoryMaster" />
         </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="States" Relationship="NewsIndiaTVModel.FK_State_Country" FromRole="Country" ToRole="State" />
+        </EntityType>
         <EntityType Name="SideBannerMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -255,6 +317,20 @@
           <Property Name="URL" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IsVisible" Type="Boolean" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CountryId" Type="Int32" />
+          <NavigationProperty Name="Country" Relationship="NewsIndiaTVModel.FK_State_Country" FromRole="State" ToRole="Country" />
         </EntityType>
         <EntityType Name="SubCategoryDataAttachment">
           <Key>
@@ -357,6 +433,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_State_Country">
+          <End Type="NewsIndiaTVModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="NewsIndiaTVModel.State" Role="State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SubCategoryDataAttachment_SubCategoryDataMaster">
           <End Type="NewsIndiaTVModel.SubCategoryDataMaster" Role="SubCategoryDataMaster" Multiplicity="1" />
           <End Type="NewsIndiaTVModel.SubCategoryDataAttachment" Role="SubCategoryDataAttachment" Multiplicity="*" />
@@ -418,6 +506,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="NewsIndiaTVModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SideBannerMasters">
             <EntityTypeMapping TypeName="NewsIndiaTVModel.SideBannerMaster">
               <MappingFragment StoreEntitySet="SideBannerMaster">
@@ -427,6 +528,20 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ImageName" ColumnName="ImageName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="NewsIndiaTVModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

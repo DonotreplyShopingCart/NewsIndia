@@ -1,0 +1,205 @@
+﻿@using Common
+@model BusinessClasses.UserModel
+@{
+    ViewBag.Title = "AddUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("AddUser", "User", FormMethod.Post, new { enctype = "multipart/form-data", id = "PostUserForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal ">
+        @Html.ValidationSummary(true)
+        <div class="col col-lg-6">
+            <div class="form-group">
+                <label>First Name</label>&nbsp;<span class="asterisk">*</span>
+                <div style="width: 281px;">
+                    @Html.TextBoxFor(model => model.FirstName, new { @maxLength = 50, @class = "form-control", @style = "width: 100%;" })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.FirstName)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Middle Name</label>&nbsp;@*<span class="asterisk">*</span>*@
+                <div style="width: 281px;">
+                    @Html.TextBoxFor(model => model.MiddleName, new { @maxLength = 50, @class = "form-control", @style = "width: 100%;" })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.MiddleName)
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>&nbsp;<span class="asterisk">*</span>
+                <div style="width: 281px;">
+                    @Html.TextBoxFor(model => model.LastName, new { @maxLength = 50, @class = "form-control", @style = "width: 100%;" })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.LastName)
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Email Id</label>&nbsp;<span class="asterisk">*</span>
+                <div style="width: 281px;">
+                    @Html.TextBoxFor(model => model.EmailId, new { @maxLength = 50, @class = "form-control", @style = "width: 100%;" })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.EmailId)
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Date Of Birth</label>&nbsp;<span class="asterisk">*</span>
+
+                <div style="width: 281px;">
+                    @*@Html.TextBoxFor(model => model.Dob, new { @class = "form-control", @style = "width: 100%;" })*@
+                    @Html.TextBoxFor(model => model.DateOfBirth, "{0:MM/dd/yyyy}", new { @class = "form-control", @style = "width: 100%;" })
+
+                    @*<input class="datepicker" data-date-format="mm/dd/yyyy">*@
+                    <div>
+                        @Html.ValidationMessageFor(model => model.DateOfBirth)
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Gender</label>&nbsp;<span class="asterisk">*</span>
+                <div style="width: 281px;">
+                    @Html.RadioButtonFor(model => model.Gender, true) Male
+                    @Html.RadioButtonFor(model => model.Gender, false) Female
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Marital Status</label>&nbsp;<span class="asterisk">*</span>
+                <div style="width: 281px;">
+                    @Html.RadioButtonFor(model => model.MaritalStatus, "1", true) Single
+                    @Html.RadioButtonFor(model => model.MaritalStatus, "2", false) Married
+                    @Html.RadioButtonFor(model => model.MaritalStatus, "3", false) Divorcee
+                    <div>
+                        @Html.ValidationMessageFor(model => model.MaritalStatus)
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label> Select Country</label>&nbsp;<span class="asterisk">*</span>
+                <div style="width: 281px;">
+                    @Html.DropDownListFor(m => m.Country, Model.DropDownForCountry.ToSelectList(a => a.Value, a => a.Text, a => a.Selected), "Select Country", new { @class = "form-control", @style = "width: 100%;" })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Country)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label> Select State</label>&nbsp;<span class="asterisk">*</span>
+                <div style="width: 281px;">
+                    <select id="State" name="State" class="form-control"></select>
+                    @*@if()*@
+                    <div id="DescriptionErrorMessage" style="color:red">
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label>City </label>&nbsp;<span class="asterisk">*</span>
+                <div style="width: 281px;">
+                    @Html.TextBoxFor(model => model.City, new { @maxLength = 50, @class = "form-control", @style = "width: 100%;" })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.City)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Address </label>&nbsp;<span class="asterisk">*</span>
+                <div style="width: 281px;">
+                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @style = "width: 100%;" })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Address)
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col col-lg-6">
+            <div class="form-group">
+                <label>Mobile Number</label>&nbsp;<span class="asterisk">*</span>
+                <div style="width: 281px;">
+                    @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control", @style = "width: 100%;", maxlength = "10" })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.MobileNumber)
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Pin Code</label>&nbsp;<span class="asterisk">*</span>
+                <div style="width: 281px;">
+                    @Html.TextBoxFor(model => model.PinCode, new { @class = "form-control", @style = "width: 100%;", maxlength = "6" })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.PinCode)
+                    </div>
+                </div>
+            </div>
+            @*<div class="form-group">
+                <label> Select Role</label>&nbsp;<span class="asterisk">*</span>
+                <div style="width: 281px;">
+                    @Html.DropDownListFor(m => m.SelectedRoleId, Model.DropDownForUserRole.ToSelectList(a => a.Value, a => a.Text, a => a.Selected), "Select Role", new { @class = "form-control", @style = "width: 100%;" })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.SelectedRoleId)
+                    </div>
+                </div>
+            </div>*@
+            <div class="form-group">
+                <label>Password</label>&nbsp;<span class="asterisk">*</span>
+                <div style="width: 281px;">
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", @style = "width: 100%;", @maxLength = 50 })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label> Confirm Password</label>&nbsp;<span class="asterisk">*</span>
+                <div style="width: 281px;">
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { @maxLength = 50, @class = "form-control", @style = "width: 100%;" })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9" style="width: 76%">
+            <div class=" pull-right">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="button" value="Cancel" class="btn btn-primary" onclick="goBack()" />
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+   /* $('#Country').change(function () {
+        //debugger;
+        var countryId = $(this).val();
+        if (countryId == "") {
+            $("#State").empty();
+            $("#State").html('<option value="0">Select State</option>');
+        } else {
+            //debugger;
+            $.ajax({
+                type: "GET",
+                url: "/State/CascadingStatesDropDown?countryId=" + $(this).val() + "&pageNumber=" + 0 + "&pageSize=" + "0" + "&searchKeyword=" + null + "&sortColumnName=" + null + "&sortOrder=" + null,
+                // data: {  },
+                success: function (data) {
+                    $("#State").html(data);
+                },
+                error: function (reponse) {
+                }
+            });
+        }
+    });*/
+</script>

@@ -170,6 +170,7 @@
     <Compile Include="Controllers\SubCategoryDataController.cs" />
     <Compile Include="Controllers\SubCategoryDataManagerController.cs" />
     <Compile Include="Controllers\SubCategoryManagerController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CookieManager.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -187,6 +188,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AttachmentUploads\QU201554038260\AudioImage.png" />
+    <Content Include="AttachmentUploads\QU201554045330\Maintenance.png" />
+    <Content Include="AttachmentUploads\VideoFile1.mp4" />
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Antlr3.Runtime.pdb" />
     <Content Include="bin\BusinessClasses.dll" />
@@ -778,7 +782,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\SubCategory\Index.cshtml" />
     <Content Include="Views\Account\NewsIndiaAdminLogin.cshtml" />
-    <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\CategoryManager\CategoryMaster.cshtml" />
     <Content Include="Views\CategoryManager\ShowCategoryTable.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
@@ -790,10 +793,12 @@
     <Content Include="Views\SubCategoryDataManager\ShowSubCategoryDataTable.cshtml" />
     <Content Include="Views\SubCategoryDataManager\SubCategoryDataMaster.cshtml" />
     <Content Include="Views\SubCategoryDataManager\DisplaySubCategoryData.cshtml" />
+    <Content Include="Views\User\AddUser.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="AttachmentUploads\" />
+    <Folder Include="AttachmentUploads\TemporaryFiles\1\" />
     <Folder Include="Content\Audio\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Admin\" />

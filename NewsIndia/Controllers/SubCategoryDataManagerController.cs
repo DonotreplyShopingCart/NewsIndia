@@ -4,6 +4,8 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
+using System.Text;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -96,7 +98,9 @@ namespace NewsIndia.Controllers
 
                 var currentDate = Convert.ToString(DateTime.Now);
 
-                string timeStamp = Convert.ToInt32(subCategoryDataId) == 0 ? CommonHelper.GetTimestamp(Convert.ToDateTime(currentDate)) : timestamp;
+                string timeStamp = Convert.ToInt32(subCategoryDataId) == 0
+                    ? CommonHelper.GetTimestamp(Convert.ToDateTime(currentDate))
+                    : timestamp;
 
                 if (subCategoryDataInfoModel.UploadedFileNames != null)
                 {
@@ -112,12 +116,13 @@ namespace NewsIndia.Controllers
                     }
 
                 }
-              
 
-                if (subCategoryDataInfoModel.UploadedFileNames != null && subCategoryDataInfoModel.UploadedFileNames != "")
+
+                if (subCategoryDataInfoModel.UploadedFileNames != null &&
+                    subCategoryDataInfoModel.UploadedFileNames != "")
                 {
                     subCategoryDataInfoModel.UploadedFileNames = subCategoryDataInfoModel.UploadedFileNames.Substring(0,
-                  subCategoryDataInfoModel.UploadedFileNames.Length - 1);
+                        subCategoryDataInfoModel.UploadedFileNames.Length - 1);
 
                     //questionMaster.UploadedFileNames = questionMaster.UploadedFileNames.Split('/')[1];
                     //questionMaster.UploadedFileNames = questionMaster.UploadedFileNames + ",";
@@ -145,7 +150,8 @@ namespace NewsIndia.Controllers
                             string fileName = timeStamp + "\\" + Path.GetFileName(fileEntry);
                             if (fileName == questionFiles)
                             {
-                                string sourceFilePath = Path.Combine(currentUserTempDirectoryPath, fileName.Split('\\')[1]);
+                                string sourceFilePath = Path.Combine(currentUserTempDirectoryPath,
+                                    fileName.Split('\\')[1]);
 
                                 if (System.IO.File.Exists(sourceFilePath))
                                 {
@@ -162,16 +168,49 @@ namespace NewsIndia.Controllers
                         }
                     }
                 }
-                return Json(NewsIndiaBAL.SubCategoryDataManager.AddEditSubCategoryData(subCategoryDataInfoModel,
-                                        Convert.ToInt32(subCategoryDataId)), JsonRequestBehavior.AllowGet);
+
+                var result = NewsIndiaBAL.SubCategoryDataManager.AddEditSubCategoryData(subCategoryDataInfoModel,
+                    Convert.ToInt32(subCategoryDataId));
+                if (result != null)
+                {
+                    var notificationCategoryName = "";
+
+                    notificationCategoryName = "Email abc";
+                    //var userDetails = new UserRepository();
+                    //var user = userDetails.Find(userId);
+
+                    var emailAddress = ConfigurationManager.AppSettings["AdminEmail"];
+
+                    #region Send Email Notification to User
+
+                    const string mailSubject = "New News Posted";
+                    string mainUrl = ConfigurationManager.AppSettings["MainURL"];
+                    var sbMailBody = new StringBuilder();
+                    sbMailBody.Append("Hi " + "Akshay" + " " + "Bibekar" + ",");
+                    sbMailBody.Append(" <br />Notification !!!");
+                    sbMailBody.Append("<br /><br /> Please approve news to show it on website ");
+                    sbMailBody.Append("<br /><br /> ");
+                    sbMailBody.Append("<strong> Thanks & Regards, <br /> NewsIndia Team </strong>");
+                    sbMailBody.Append("<br /><br /> ");
+
+                    #endregion
+
+                    // status = EmailHelper.EmailComposeActionsAndSendEmail(emailAddress, sbMailBody.ToString(), mailSubject, null);
+                    SendMail(emailAddress, mailSubject, sbMailBody.ToString(), null);
+                    return Json(result, JsonRequestBehavior.AllowGet);
+                    /*return Json(NewsIndiaBAL.SubCategoryDataManager.AddEditSubCategoryData(subCategoryDataInfoModel,
+                                        Convert.ToInt32(subCategoryDataId)), JsonRequestBehavior.AllowGet);*/
 
 
+                }
             }
             catch (Exception ex)
             {
-                return Json(null, JsonRequestBehavior.AllowGet); ;
+                return Json(null, JsonRequestBehavior.AllowGet);
+                ;
             }
             // return null;
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
 
         /// used to remove Sub category Data
@@ -381,6 +420,35 @@ namespace NewsIndia.Controllers
         {
             var subCategories = NewsIndiaBAL.SubCategoryDataManager.GetSubCategoryDataList();
             return View(subCategories);
+        }
+
+        public static void SendMail(string toEmailAddress, string subject, string MessageBody, Attachment attachmentFile = null)
+        {
+            try
+            {
+                /*SmtpClient client = new SmtpClient();
+                var message = new MailMessage();
+                message.To.Add(toEmailAddress);
+                message.Subject = subject;
+                message.IsBodyHtml = true;
+
+                //  AlternateView messageBody = AlternateView.CreateAlternateViewFromString(MessageBody, null, "text/html");
+                message.Body = MessageBody;
+                // Set the method that is called back when the send operation ends.
+                //client.SendCompleted += new SendCompletedEventHandler(SendCompletedCallback);
+                // The userState can be any object that allows your callback  
+                // method to identify this send operation. 
+                // For this example, the userToken is a int constant. 
+                //int userState = NotificationLogId;
+                client.SendAsync(message, "message");*/
+                Common.EmailHelper.SendEmail("Donotreply.ShopingCart@gmail.com", new List<string>() { toEmailAddress }, subject, MessageBody);
+
+            }
+            catch (Exception ex)
+            {
+                var result = ex.Message;
+            }
+
         }
 
     }
