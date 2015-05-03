@@ -27,6 +27,46 @@ namespace NewsIndiaBAL
         }
 
         /// <summary>
+        /// Used to Add or Update Sub Category Data
+        /// </summary>
+        /// <param name="subCategoryDataInfoModel"></param>
+        /// <param name="subCategoryDataId"></param>
+        /// <returns></returns>
+        public static bool AddEditSubCategoryData(
+           SubCategoryDataInfoModel subCategoryDataInfoModel, int subCategoryDataId = 0)
+        {
+            try
+            {
+                return 
+                    NewsIndiaDAL.SubCategoryDataManager.AddEditSubCategoryData(subCategoryDataInfoModel,
+                        subCategoryDataId);
+                
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Used to get the sub category data information
+        /// </summary>
+        /// <param name="subCategoryId"></param>
+        /// <returns></returns>
+        public static SubCategoryDataInfoModel GetSubCategoryDataInformation(int subCategoryId = 0)
+        {
+            try
+            {
+                return NewsIndiaDAL.SubCategoryDataManager.GetSubCategoryDataInformation(subCategoryId);
+            }
+            catch (Exception ex)
+            {
+                return new SubCategoryDataInfoModel();
+            }
+        }
+        
+
+        /// <summary>
         /// Used to get the list of the subcategory present under the category
         /// </summary>
         /// <param name="categoryId"></param>
@@ -46,13 +86,13 @@ namespace NewsIndiaBAL
         /// <summary>
         /// Used to remove the SubCategory
         /// </summary>
-        /// <param name="subCategoryId"></param>
+        /// <param name="subCategoryDataId"></param>
         /// <returns></returns>
-        public static bool RemoveSubCategory(int subCategoryId)
+        public static bool RemoveSubCategoryData(int subCategoryDataId)
         {
             try
             {
-                return NewsIndiaDAL.SubCategoryManager.RemoveSubCategory(subCategoryId);
+                return NewsIndiaDAL.SubCategoryDataManager.RemoveSubCategoryData(subCategoryDataId);
             }
             catch (Exception ex)
             {

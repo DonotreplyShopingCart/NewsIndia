@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using EntityProject;
 using NewsIndia.AuthFilters;
+using NewsIndiaBAL;
 
 namespace NewsIndia.Controllers
 {
@@ -19,10 +20,13 @@ namespace NewsIndia.Controllers
         {
            return View();
         }
-
-        public ActionResult Details()
+        public ActionResult Details(int Id = 0)
         {
-            return View();
+            if (Id == 0)
+                RedirectToAction("Index");
+
+            var data = SubCategoryData.GetSubCategoryData(Id);
+            return View(data);
         }
 
         public ActionResult About()

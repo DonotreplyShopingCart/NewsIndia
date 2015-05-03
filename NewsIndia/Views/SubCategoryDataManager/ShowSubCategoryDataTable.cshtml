@@ -28,7 +28,7 @@
                      : !subCategoryData.IsSubCategoryVisible ? "Parent SubCategory not set for Showing"
                      : (!subCategoryData.IsCategoryActive) ? "Parent Category Not Selected"
                      : (!subCategoryData.IsCategoryVisible) ? "Parent Category not set for Showing"
-                     : (!subCategoryData.IsVisible ? "Not selected for showing." : "-"));
+                     : (!subCategoryData.IsVisible ? "Not selected for showing(Wating for Admin approval.)." : "-"));
 
             <tr class="@classInfo">
                 <td class="TextAlign RowTextCss">@count</td>
@@ -39,7 +39,7 @@
                 <td class="TextAlign RowTextCss">@remark</td>
                 <td class="TextAlign">
 
-                    <a class="AnchorCssRemove" data-toggle="modal" data-target="#popup" data-whatever="Anchor" data-subcategoryDataid="@subCategoryData.SubCategoryDataId">
+                    <a class="AnchorCssRemove"  href="/SubCategoryDataManager/DisplaySubCategoryData?subCategoryDataId=@subCategoryData.SubCategoryDataId" data-target="#popup" data-whatever="Anchor" >
                         <img class="ActionImages" src="~/Content/Images/Edit.png" />
                     </a>
                     <a class="AnchorCssRemove" style="margin-left: 2px" onclick="RemoveSubCategoryData(@subCategoryData.SubCategoryDataId)"><img class="ActionImages" src="~/Content/Images/Delete.png" /></a>

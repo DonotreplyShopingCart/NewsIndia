@@ -40,15 +40,14 @@ namespace NewsIndiaDAL
 
                     //}
                     //return categoryDataModel;
-
                     var subcategoryInfo =
-                        nie.SubCategoryDataMasters.FirstOrDefault(m => m.ID == subCategoryDataId && m.IsVisible);
+                                         nie.SubCategoryDataMasters.FirstOrDefault(m => m.ID == subCategoryDataId && m.IsVisible);
                     return new SubCategoryModel()
                     {
                         Description = subcategoryInfo.Description,
                         SubCategoryDataId = subcategoryInfo.ID,
                         Title = subcategoryInfo.Title,
-                        Attachments = subcategoryInfo.SubCategoryDataAttachments.Select(m=>new SubCategoryAttachment()
+                        Attachments = subcategoryInfo.SubCategoryDataAttachments.Select(m => new SubCategoryAttachment()
                         {
                             FileName = m.FileName,
                             FileType = (AttachmentType)m.AttachmentID,

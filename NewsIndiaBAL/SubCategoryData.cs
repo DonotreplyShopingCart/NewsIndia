@@ -21,5 +21,6 @@ namespace NewsIndiaBAL
                 return new SubCategoryModel();
             }
         }
+
     }
 }

@@ -23,7 +23,7 @@
     {
         foreach (var item in Model)
         {
-            <a style=" ">
+            <a href='@string.Format("../Home/Details/{0}", item.SubCategoryDataId)' style="text-decoration: none;color:inherit;">
                 <div class="ListItemDiv">
                     @{
             int val = 4;

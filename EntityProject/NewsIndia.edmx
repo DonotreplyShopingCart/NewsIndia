@@ -50,8 +50,11 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="SavedTimeStamp" Type="varchar" MaxLength="500" />
           <Property Name="SubmittedDate" Type="datetime" />
           <Property Name="SubCategoryId" Type="int" Nullable="false" />
+          <Property Name="IsSuperAdminApproved" Type="bit" />
           <Property Name="IsVisible" Type="bit" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
@@ -272,8 +275,11 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="SavedTimeStamp" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="SubmittedDate" Type="DateTime" Precision="3" />
           <Property Name="SubCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="IsSuperAdminApproved" Type="Boolean" />
           <Property Name="IsVisible" Type="Boolean" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="SubCategoryDataAttachments" Relationship="NewsIndiaTVModel.FK_SubCategoryDataAttachment_SubCategoryDataMaster" FromRole="SubCategoryDataMaster" ToRole="SubCategoryDataAttachment" />
@@ -440,8 +446,11 @@
               <MappingFragment StoreEntitySet="SubCategoryDataMaster">
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
+                <ScalarProperty Name="IsSuperAdminApproved" ColumnName="IsSuperAdminApproved" />
                 <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
                 <ScalarProperty Name="SubmittedDate" ColumnName="SubmittedDate" />
+                <ScalarProperty Name="SavedTimeStamp" ColumnName="SavedTimeStamp" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
